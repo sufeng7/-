@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function formatArrayWithAttr(arr, attr) {
+				let list = [],
+					obj = {};
+				arr.forEach((item) => {
+					if (!obj[item[attr]]) {
+						list.push({
+							[attr]: item[attr],
+							allData: [item],
+						});
+						obj[item[attr]] = item;
+					} else {
+						list.forEach((el) => {
+							if (el[attr] == item[attr]) {
+								el.allData.push(item);
+							}
+						});
+					}
+				});
+				return list;
+			}
+			const arr1 = [
+				{
+					timers: 12,
+					a: "a",
+				},
+				{
+					timers: 12,
+					b: "b",
+				},
+				{
+					timers: 10,
+					c: "c",
+				},
+				{
+					timers: 10,
+					d: "d",
+				},
+				{
+					timers: 11,
+					e: "e",
+				},
+			];
+			console.log(formatArrayWithAttr(arr1, "timers"));
+		</script>
+	</body>
+</html>
